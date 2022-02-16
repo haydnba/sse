@@ -1,0 +1,32 @@
+{
+  "name": "sse",
+  "version": "1.0.0",
+  "description": "play with server sent events",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haydnba/sse.git"
+  },
+  "keywords": [],
+  "author": "Haydn Appleby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haydnba/sse/issues"
+  },
+  "homepage": "https://github.com/haydnba/sse#readme",
+  "dependencies": {
+    "fastify": "^3.27.1",
+    "fastify-cors": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.18",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.5.5"
+  }
+}
