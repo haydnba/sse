@@ -22,10 +22,12 @@
   "homepage": "https://github.com/haydnba/sse#readme",
   "dependencies": {
     "fastify": "^3.27.1",
-    "fastify-cors": "^6.0.2"
+    "fastify-cors": "^6.0.2",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.18",
+    "@types/sqlite3": "^3.1.8",
     "nodemon": "^2.0.15",
     "typescript": "^4.5.5"
   }
