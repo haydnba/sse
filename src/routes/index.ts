@@ -1,32 +1,26 @@
 import * as crypto from 'crypto';
-import * as stream from 'stream';
 
 function randomString(length = 32): string {
   return crypto.randomBytes(length).toString('hex');
 }
 
 function* generateSequence() {
-  while (Math.round(Math.random())) {
-    yield 'data: ' + randomString() + '\n\n';
+  while (Math.round(Math.random() * 100) > 10) {
+    yield { data: randomString() };
   }
 }
 
 function sseHandler(_request, reply) {
-  reply.raw.setHeader('Access-Control-Allow-Origin', '*');
-  reply.raw.setHeader('Cache-Control', 'no-cache,no-transform');
-  reply.raw.setHeader('Connection', 'keep-alive');
-  reply.raw.setHeader('Content-Type', 'text/event-stream');
-  reply.raw.setHeader('x-no-compression', 1);
-  reply.raw.writeHead(200);
+  reply.sse(generateSequence());
+}
 
-  const data = stream.Readable.from(generateSequence());
-
-  data.pipe(reply.raw);
+function pongHandler(_request, reply) {
+  reply.send('pong\n');
 }
 
 async function routes(server, _options) {
   server.get('/sse/:id', sseHandler);
-  server.get('/ping', () => 'pong\n');
+  server.get('/ping', pongHandler);
 }
 
 export default routes;

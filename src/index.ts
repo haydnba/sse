@@ -1,7 +1,7 @@
 import Fastify from 'fastify';
 import cors from 'fastify-cors';
 import routes from './routes';
-import { sqlite } from './plugins';
+import { sse, sqlite } from './plugins';
 
 const server = Fastify({
   logger: true,
@@ -15,6 +15,7 @@ server.register(cors, {
   exposedHeaders: 'Authorization',
 });
 
+server.register(sse);
 server.register(sqlite);
 server.register(routes);
 
